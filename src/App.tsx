@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
 import './App.scss';
 
 // function App() {
@@ -33,6 +34,7 @@ class App extends React.Component {
   render(): React.ReactNode {
     return (
       <div className="App">
+        <Header />
         <Routes>
           <Route path="/" element={<h1>Main</h1>} />
           <Route path="about" element={<h1>About</h1>} />
