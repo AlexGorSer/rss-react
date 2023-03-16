@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Header from './components/Header/Header';
 import './App.scss';
+import PageNotFound from './components/404/PageNotFound';
+import MainLayout from './components/layout/MainLayout';
 
 // function App() {
 //   const [count, setCount] = useState(0);
@@ -34,11 +35,12 @@ class App extends React.Component {
   render(): React.ReactNode {
     return (
       <div className="App">
-        <Header />
         <Routes>
-          <Route path="/" element={<h1>Main</h1>} />
-          <Route path="about" element={<h1>About</h1>} />
-          <Route path="*" element={<h1>404</h1>} />
+          <Route path="/" element={<MainLayout />}>
+            <Route index element={<h1>Main</h1>} />
+            <Route path="about" element={<h1>About</h1>} />
+            <Route path="*" element={<PageNotFound />} />
+          </Route>
         </Routes>
       </div>
     );

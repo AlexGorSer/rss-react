@@ -9,14 +9,18 @@ class Header extends React.Component {
 
   render(): React.ReactNode {
     return (
-      <nav>
-        <NavLink to={'/'} className={({ isActive }) => this.activeLink(isActive)}>
-          Main
-        </NavLink>
-        <NavLink to={'/about'} className={({ isActive }) => this.activeLink(isActive)}>
-          About
-        </NavLink>
-      </nav>
+      <>
+        <div className="header_container">
+          <nav>
+            <NavLink to={'/'} className={({ isActive }) => this.activeLink(isActive)}>
+              Main
+            </NavLink>
+            <NavLink to={'/about'} className={({ isActive }) => this.activeLink(isActive)}>
+              About
+            </NavLink>
+          </nav>
+        </div>
+      </>
     );
   }
 }
