@@ -2,11 +2,7 @@ import React from 'react';
 
 class Footer extends React.Component {
   render(): React.ReactNode {
-    return (
-      <>
-        <h1>Footer</h1>
-      </>
-    );
+    return <footer>Footer</footer>;
   }
 }
 export default Footer;

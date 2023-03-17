@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.scss';
 import PageNotFound from './components/404/PageNotFound';
 import MainLayout from './components/layout/MainLayout';
+import Main from './components/Main/Main';
 
 // function App() {
 //   const [count, setCount] = useState(0);
@@ -37,9 +38,9 @@ class App extends React.Component {
       <div className="App">
         <Routes>
           <Route path="/" element={<MainLayout />}>
-            <Route index element={<h1>Main</h1>} />
-            <Route path="about" element={<h1>About</h1>} />
-            <Route path="contacts" element={<h1>Contacts</h1>} />
+            <Route index element={<Main />} />
+            <Route path="about" element={<h1 className="container">About</h1>} />
+            <Route path="contacts" element={<h1 className="container">Contacts</h1>} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>

@@ -4,18 +4,18 @@ import './Header.scss';
 
 class Header extends React.Component {
   state = {
-    path: '',
+    path: '/',
   };
 
-  activeLink(active: boolean) {
+  handleActiveLink(active: boolean) {
     return active ? 'active' : 'no_active';
   }
 
-  setPath(path: string) {
+  handleSetPath(path: string) {
     this.setState({ path: path });
   }
 
-  loadPath() {
+  handleLoadPath() {
     const path = window.location.pathname;
     switch (path) {
       case '/':
@@ -32,37 +32,37 @@ class Header extends React.Component {
     }
   }
   componentDidMount() {
-    this.loadPath();
+    this.handleLoadPath();
   }
 
   render(): React.ReactNode {
     return (
-      <div className="header_container">
+      <header className="header_container">
         <div className="path_name">{this.state.path}</div>
         <nav className="header_nav">
           <NavLink
             to={'/'}
-            className={({ isActive }) => this.activeLink(isActive)}
-            onClick={() => this.setPath('Main')}
+            className={({ isActive }) => this.handleActiveLink(isActive)}
+            onClick={() => this.handleSetPath('Main')}
           >
             Main
           </NavLink>
           <NavLink
             to={'/about'}
-            className={({ isActive }) => this.activeLink(isActive)}
-            onClick={() => this.setPath('About')}
+            className={({ isActive }) => this.handleActiveLink(isActive)}
+            onClick={() => this.handleSetPath('About')}
           >
             About
           </NavLink>
           <NavLink
             to={'/contacts'}
-            className={({ isActive }) => this.activeLink(isActive)}
-            onClick={() => this.setPath('Contacts')}
+            className={({ isActive }) => this.handleActiveLink(isActive)}
+            onClick={() => this.handleSetPath('Contacts')}
           >
             Contacts
           </NavLink>
         </nav>
-      </div>
+      </header>
     );
   }
 }
