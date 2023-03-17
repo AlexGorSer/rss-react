@@ -39,6 +39,7 @@ class App extends React.Component {
           <Route path="/" element={<MainLayout />}>
             <Route index element={<h1>Main</h1>} />
             <Route path="about" element={<h1>About</h1>} />
+            <Route path="contacts" element={<h1>Contacts</h1>} />
             <Route path="*" element={<PageNotFound />} />
           </Route>
         </Routes>
