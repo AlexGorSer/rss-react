@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
 import PageNotFound from './components/404/PageNotFound';
 import MainLayout from './components/layout/MainLayout';
@@ -12,9 +12,10 @@ class App extends React.Component {
         <Routes>
           <Route path="/" element={<MainLayout />}>
             <Route index element={<Main />} />
-            <Route path="/about" element={<div className="container">About</div>} />
-            <Route path="/contacts" element={<div className="container">Contacts</div>} />
-            <Route path="*" element={<PageNotFound />} />
+            <Route path="about" element={<div className="container">About</div>} />
+            <Route path="contacts" element={<div className="container">Contacts</div>} />
+            <Route path="404" element={<PageNotFound />} />
+            <Route path="*" element={<Navigate to="/404" replace />} />
           </Route>
         </Routes>
       </div>
