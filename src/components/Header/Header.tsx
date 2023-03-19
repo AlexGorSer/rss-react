@@ -4,7 +4,7 @@ import './Header.scss';
 
 class Header extends React.Component {
   state = {
-    path: '/',
+    path: '/rss-react',
   };
 
   handleActiveLink(active: boolean) {
@@ -17,14 +17,15 @@ class Header extends React.Component {
 
   handleLoadPath() {
     const path = window.location.pathname;
+    console.log(path);
     switch (path) {
-      case '/':
+      case '/rss-react':
         this.setState({ path: 'Main' });
         break;
-      case '/about':
+      case '/rss-react/about':
         this.setState({ path: 'About' });
         break;
-      case '/contacts':
+      case '/rss-react/contacts':
         this.setState({ path: 'Contacts' });
         break;
       default:
