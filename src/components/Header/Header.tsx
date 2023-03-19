@@ -22,6 +22,9 @@ class Header extends React.Component {
       case '/rss-react':
         this.setState({ path: 'Main' });
         break;
+      case '/rss-react/':
+        this.setState({ path: 'Main' });
+        break;
       case '/rss-react/about':
         this.setState({ path: 'About' });
         break;
