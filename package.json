@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "npm run lint:fix && tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint src",
     "prettier": "npx prettier  src/**/*.{ts,tsx} --write",
