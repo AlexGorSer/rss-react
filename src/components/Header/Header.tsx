@@ -38,7 +38,7 @@ class Header extends React.Component {
   render(): React.ReactNode {
     return (
       <header className="header_container">
-        <div className="path_name">{this.state.path}</div>
+        <p className="path_name">{this.state.path}</p>
         <nav className="header_nav">
           <NavLink
             to={'/'}

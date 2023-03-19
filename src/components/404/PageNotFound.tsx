@@ -6,7 +6,7 @@ class PageNotFound extends React.Component {
     return (
       <>
         <h1>Page Not Found</h1>
-        <img src={NotFound} alt="" />
+        <img src={NotFound} alt="not_found" />
       </>
     );
   }
