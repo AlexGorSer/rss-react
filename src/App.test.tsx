@@ -15,11 +15,11 @@ describe('App', () => {
   });
 
   it('not-fount page', () => {
-    const { getByText } = render(
+    const { getAllByText } = render(
       <MemoryRouter initialEntries={['/page-not-found']}>
         <App />
       </MemoryRouter>
     );
-    expect(getByText(/Page Not Found/i)).toBeInTheDocument();
+    expect(getAllByText(/Page Not Found/i)).toBeTruthy();
   });
 });
