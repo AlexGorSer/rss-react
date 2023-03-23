@@ -7,7 +7,7 @@ import './Main.scss';
 class Main extends React.Component {
   state: IState = {
     arrCard: products,
-    input: localStorage.getItem('input_text'),
+    input: localStorage.getItem('input_text') || '',
     filterArray: products,
   };
 
@@ -29,7 +29,7 @@ class Main extends React.Component {
               id="input"
               type="text"
               placeholder="Search"
-              value={this.state.input === null ? '' : this.state.input}
+              value={this.state.input?.toString()}
               onChange={(e) => this.handleInputValue(e.target.value)}
             />
           </form>
