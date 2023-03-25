@@ -1,0 +1,14 @@
+.form__wrapper {
+  margin: 0 auto;
+  background-color: black;
+  width: 50%;
+  border-radius: 10px;
+}
+
+.form__container {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 50%;
+}
