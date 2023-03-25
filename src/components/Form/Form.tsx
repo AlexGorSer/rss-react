@@ -9,25 +9,37 @@ import './Form.scss';
 import { IFormData } from './IForm';
 import { formData } from './../../data/formData';
 
-interface ITest {
+interface IForm {
   cardArray: IFormData[];
+  textInputMessage: string;
+  dateInput: string;
+  selectInput: string;
+  switcherInput: string;
+  fileUpload: string;
+  checkboxInput: string;
 }
 
 class Form extends React.Component {
-  state: ITest = {
+  state: IForm = {
     cardArray: formData,
+    textInputMessage: '',
+    dateInput: '',
+    selectInput: '',
+    switcherInput: '',
+    fileUpload: '',
+    checkboxInput: '',
   };
   formRef: React.RefObject<HTMLFormElement> = React.createRef();
 
   handleSubmit(e: React.MouseEvent) {
     e.preventDefault();
-
     console.log(this.formRef.current?.text.value);
     console.log(this.formRef.current?.date.value);
     console.log(this.formRef.current?.select.value);
     console.log(this.formRef.current?.gander.value);
     console.log(this.formRef.current?.file.value);
     console.log(this.formRef.current?.checkbox.checked);
+    this.formRef.current?.reset();
   }
 
   render(): React.ReactNode {
@@ -35,12 +47,12 @@ class Form extends React.Component {
       <section className="form container">
         <div className="form__wrapper">
           <form ref={this.formRef} className="form__container">
-            <TextInput />
-            <DateInput />
-            <SelectInput />
-            <SwitcherInput />
-            <FileUpload />
-            <CheckboxInput />
+            <TextInput textInputMessage={this.state.textInputMessage} />
+            <DateInput dateInput={this.state.dateInput} />
+            <SelectInput selectInput={this.state.selectInput} />
+            <SwitcherInput switcherInput={this.state.switcherInput} />
+            <FileUpload fileUpload={this.state.fileUpload} />
+            <CheckboxInput checkboxInput={this.state.checkboxInput} />
             <button type="submit" onClick={(e) => this.handleSubmit(e)}>
               Submit
             </button>
