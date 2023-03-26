@@ -6,28 +6,19 @@ import SelectInput from './Input.components/SelectInput';
 import SwitcherInput from './Input.components/SwitcherInput';
 import TextInput from './Input.components/TextInput';
 import './Form.scss';
-import { IFormData } from './IForm';
-import { formData } from './../../data/formData';
-
-interface IForm {
-  cardArray: IFormData[];
-  textInputMessage: string;
-  dateInput: string;
-  selectInput: string;
-  switcherInput: string;
-  fileUpload: string;
-  checkboxInput: string;
-}
+import { IForm, IFormData } from './IForm';
+import Cards from './Cards/Cards';
 
 class Form extends React.Component {
   state: IForm = {
-    cardArray: formData,
+    cardArray: [],
     textInputMessage: '',
     dateInput: '',
     selectInput: '',
     switcherInput: '',
     fileUpload: '',
     checkboxInput: '',
+    successCreate: false,
   };
   formRef: React.RefObject<HTMLFormElement> = React.createRef();
 
@@ -50,9 +41,11 @@ class Form extends React.Component {
     if (textValid && dateValid && selectValid && genderValid && fileValid && checkboxValid) {
       const files = this.formRef.current!.file.files[0];
       const image = URL.createObjectURL(files);
+      const modDate = date.split('-').reverse().join('-');
+
       const obj: IFormData = {
         text: text,
-        date: date,
+        date: modDate,
         country: select,
         consent: checkbox,
         gender: gender,
@@ -61,6 +54,10 @@ class Form extends React.Component {
 
       this.setState({ cardArray: [...this.state.cardArray, obj] });
       this.resetForm();
+      this.setState({ successCreate: true });
+      setTimeout(() => {
+        this.setState({ successCreate: false });
+      }, 2000);
     }
   }
 
@@ -68,15 +65,14 @@ class Form extends React.Component {
     if (name.length < 3) {
       this.setState({ textInputMessage: 'minimal 3 symbols' });
       return false;
-    }
-    if (/[0-9\.,-\/#!$%' "^&*;:{}=_`~()-]/.test(name)) {
+    } else if (/[0-9\.,-\/#!$%' "^&*;:{}=_`~()-]/.test(name)) {
       this.setState({ textInputMessage: 'wrong name' });
       return false;
-    }
-    if (!/^[A-ZА-Я]/.test(name)) {
+    } else if (!/^[A-ZА-Я]/.test(name)) {
       this.setState({ textInputMessage: 'start from uppercase' });
       return false;
     }
+    this.setState({ textInputMessage: '' });
     return true;
   }
 
@@ -91,6 +87,7 @@ class Form extends React.Component {
       this.setState({ dateInput: 'wrong year' });
       return false;
     }
+    this.setState({ dateInput: '' });
     return true;
   }
 
@@ -99,6 +96,7 @@ class Form extends React.Component {
       this.setState({ selectInput: 'Select country' });
       return false;
     }
+    this.setState({ selectInput: '' });
     return true;
   }
 
@@ -107,20 +105,25 @@ class Form extends React.Component {
       this.setState({ switcherInput: 'select gender' });
       return false;
     }
+    this.setState({ switcherInput: '' });
     return true;
   }
+
   validateFile(file: string) {
     if (file === '') {
       this.setState({ fileUpload: 'select file' });
       return false;
     }
+    this.setState({ fileUpload: '' });
     return true;
   }
+
   validateCheckbox(checkbox: boolean) {
     if (!checkbox) {
       this.setState({ checkboxInput: 'Agree consent to my personal data' });
       return false;
     }
+    this.setState({ checkboxInput: '' });
     return true;
   }
   resetForm() {
@@ -150,17 +153,11 @@ class Form extends React.Component {
               Submit
             </button>
           </form>
+          {this.state.successCreate && <h1>Card is created!</h1>}
         </div>
         <div className="form-cards__container">
           {this.state.cardArray.map((elem, index) => (
-            <div key={index}>
-              <p>{elem.text}</p>
-              <p>{elem.date}</p>
-              <p>{elem.country}</p>
-              <p>{elem.gender}</p>
-              <img src={elem.file} alt="" />
-              <p>{elem.consent}</p>
-            </div>
+            <Cards key={index} {...elem} />
           ))}
         </div>
       </section>

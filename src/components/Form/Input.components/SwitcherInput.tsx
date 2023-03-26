@@ -9,11 +9,11 @@ class SwitcherInput extends React.Component<IProps> {
           Gender:
           <label>
             Male:
-            <input type="radio" name="gander" value="male" />
+            <input type="radio" name="gander" value="Male" />
           </label>
           <label>
             Female:
-            <input type="radio" name="gander" value="female" />
+            <input type="radio" name="gander" value="Female" />
           </label>
           {this.props.switcherInput && <span>{this.props.switcherInput}</span>}
         </label>

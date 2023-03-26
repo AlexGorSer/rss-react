@@ -14,12 +14,12 @@ class SelectInput extends React.Component<IProps> {
           <option defaultChecked value="select">
             Select your country
           </option>
-          <option defaultChecked value="belarus">
+          <option defaultChecked value="Belarus">
             Belarus
           </option>
-          <option value="russia">Russia</option>
-          <option value="ukraine">Ukraine</option>
-          <option value="kazakhstan">Kazakhstan</option>
+          <option value="Russia">Russia</option>
+          <option value="Ukraine">Ukraine</option>
+          <option value="Kazakhstan">Kazakhstan</option>
         </select>
         {this.props.selectInput && <span>{this.props.selectInput}</span>}
       </label>
