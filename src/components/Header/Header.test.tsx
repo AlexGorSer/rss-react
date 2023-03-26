@@ -33,7 +33,7 @@ describe('Header.test', () => {
 
     expect(screen.getAllByRole('link')[1] as HTMLElement).toHaveClass('active');
     fireEvent.click(screen.getByText('Contacts'));
-    expect(screen.getAllByRole('link')[2] as HTMLElement).toHaveClass('active');
+    expect(screen.getAllByRole('link')[3] as HTMLElement).toHaveClass('active');
 
     fireEvent.click(screen.getByText('Main'));
     expect(screen.getAllByRole('link')[0] as HTMLElement).toHaveClass('active');
