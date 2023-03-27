@@ -10,7 +10,7 @@ class TextInput extends React.Component<IProps> {
           <input
             type="text"
             name="text"
-            className={this.props.textInputMessage == '' ? 'validate' : 'no_validate '}
+            className={this.props.textInputMessage == '' ? 'validate' : 'no_validate'}
           />
           {this.props.textInputMessage && <span>{this.props.textInputMessage}</span>}
         </label>

@@ -4,7 +4,7 @@ import { IProps } from './IProps';
 class SwitcherInput extends React.Component<IProps> {
   render(): React.ReactNode {
     return (
-      <div className={this.props.switcherInput === '' ? 'validate' : 'no_validate '}>
+      <div className={this.props.switcherInput === '' ? 'validate' : 'no_validate'}>
         <label className="label__container">
           Gender:
           <label>

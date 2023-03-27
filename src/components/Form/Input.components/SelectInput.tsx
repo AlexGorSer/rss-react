@@ -9,7 +9,7 @@ class SelectInput extends React.Component<IProps> {
         <select
           name="select"
           defaultValue={'select'}
-          className={this.props.selectInput === '' ? 'validate' : 'no_validate '}
+          className={this.props.selectInput === '' ? 'validate' : 'no_validate'}
         >
           <option defaultChecked value="select">
             Select your country

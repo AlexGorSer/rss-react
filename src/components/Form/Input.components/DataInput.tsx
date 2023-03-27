@@ -10,7 +10,7 @@ class DateInput extends React.Component<IProps> {
           <input
             type="date"
             name="date"
-            className={this.props.dateInput === '' ? 'validate' : 'no_validate '}
+            className={this.props.dateInput === '' ? 'validate' : 'no_validate'}
           />
           {this.props.dateInput && <span>{this.props.dateInput}</span>}
         </label>

@@ -10,7 +10,7 @@ class FileUpload extends React.Component<IProps> {
           type="file"
           name="file"
           accept="image/png, image/jpeg"
-          className={this.props.fileUpload === '' ? 'validate' : 'no_validate '}
+          className={this.props.fileUpload === '' ? 'validate' : 'no_validate'}
         />
         {this.props.fileUpload && <span>{this.props.fileUpload}</span>}
       </label>
