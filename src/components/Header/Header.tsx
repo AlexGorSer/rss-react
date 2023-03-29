@@ -19,6 +19,9 @@ class Header extends React.Component {
           <NavLink to={'/about'} className={({ isActive }) => this.handleActiveLink(isActive)}>
             About
           </NavLink>
+          <NavLink to={'/form'} className={({ isActive }) => this.handleActiveLink(isActive)}>
+            Form
+          </NavLink>
           <NavLink to={'/contacts'} className={({ isActive }) => this.handleActiveLink(isActive)}>
             Contacts
           </NavLink>

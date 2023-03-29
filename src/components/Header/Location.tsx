@@ -10,6 +10,8 @@ const Location = (props: WithRouterProps) => {
         return 'Main';
       case '/about':
         return 'About';
+      case '/form':
+        return 'Form';
       case '/contacts':
         return 'Contacts';
       default:

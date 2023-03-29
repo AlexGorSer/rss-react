@@ -24,15 +24,21 @@ describe('Header.test', () => {
 
     fireEvent.click(screen.getByText('Main'));
     expect(screen.getAllByText('Main')[0] as HTMLElement).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Form'));
+    expect(screen.getAllByText('Form')[0] as HTMLElement).toBeInTheDocument();
   });
 
   it('active class', () => {
     render(<Header />, { wrapper: BrowserRouter });
 
     fireEvent.click(screen.getByText('About'));
-
     expect(screen.getAllByRole('link')[1] as HTMLElement).toHaveClass('active');
+
     fireEvent.click(screen.getByText('Contacts'));
+    expect(screen.getAllByRole('link')[3] as HTMLElement).toHaveClass('active');
+
+    fireEvent.click(screen.getByText('Form'));
     expect(screen.getAllByRole('link')[2] as HTMLElement).toHaveClass('active');
 
     fireEvent.click(screen.getByText('Main'));
@@ -47,6 +53,7 @@ describe('Header.test', () => {
     );
     expect(screen.getAllByRole('link')[1] as HTMLElement).toHaveClass('no_active');
     expect(screen.getAllByRole('link')[2] as HTMLElement).toHaveClass('no_active');
+    expect(screen.getAllByRole('link')[3] as HTMLElement).toHaveClass('no_active');
     expect(screen.getAllByRole('link')[0] as HTMLElement).toHaveClass('no_active');
   });
 });
