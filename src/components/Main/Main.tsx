@@ -1,6 +1,6 @@
 import { products } from '../../data/products';
 import React, { useEffect, useRef, useState } from 'react';
-import ProductsCards from './ProductsCards/ProductsCards';
+import { ProductsCards } from './ProductsCards/ProductsCards';
 import './Main.scss';
 
 export const Main: React.FC = () => {
