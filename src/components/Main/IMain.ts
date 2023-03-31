@@ -13,7 +13,7 @@ export interface IProducts {
   images: string[];
 }
 export interface IState {
-  arrCard: IProducts[];
-  input: string | null;
-  filterArray: IProducts[];
+  arrCard?: IProducts[];
+  input?: string | null;
+  filterArray?: IProducts[];
 }
