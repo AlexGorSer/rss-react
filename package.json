@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "prettier": "npx prettier  src/**/*.{ts,tsx} --write",
     "lint:fix": "eslint src --fix",
-    "test": "vitest",
+    "test": "vitest --coverage",
     "coverage": "vitest run --coverage",
     "prepare": "husky install"
   },
