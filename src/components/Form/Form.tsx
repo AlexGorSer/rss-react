@@ -1,13 +1,13 @@
 import React from 'react';
-import CheckboxInput from './Input.components/CheckboxInput';
-import DateInput from './Input.components/DataInput';
-import FileUpload from './Input.components/FileUpload';
-import SelectInput from './Input.components/SelectInput';
-import SwitcherInput from './Input.components/SwitcherInput';
-import TextInput from './Input.components/TextInput';
+import { CheckboxInput } from './Input.components/CheckboxInput';
+import { DateInput } from './Input.components/DataInput';
+import { FileUpload } from './Input.components/FileUpload';
+import { SelectInput } from './Input.components/SelectInput';
+import { SwitcherInput } from './Input.components/SwitcherInput';
+import { TextInput } from './Input.components/TextInput';
 import './Form.scss';
 import { IForm, IFormData } from './IForm';
-import Cards from './Cards/Cards';
+import { Cards } from './Cards/Cards';
 
 class Form extends React.Component {
   state: IForm = {

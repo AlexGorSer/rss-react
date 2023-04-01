@@ -1,12 +1,12 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import CheckboxInput from './CheckboxInput';
-import DateInput from './DataInput';
-import FileUpload from './FileUpload';
-import SelectInput from './SelectInput';
-import SwitcherInput from './SwitcherInput';
-import TextInput from './TextInput';
+import { CheckboxInput } from './CheckboxInput';
+import { DateInput } from './DataInput';
+import { FileUpload } from './FileUpload';
+import { SelectInput } from './SelectInput';
+import { SwitcherInput } from './SwitcherInput';
+import { TextInput } from './TextInput';
 
 describe('CheckboxInput', () => {
   it('CheckboxInput is render', () => {
