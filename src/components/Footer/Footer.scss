@@ -1,0 +1,20 @@
+.footer__container {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.footer__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: white;
+}
+
+.rss-logo {
+  width: 150px;
+}
