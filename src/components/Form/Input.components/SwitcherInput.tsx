@@ -1,20 +1,32 @@
 import React from 'react';
-import { IProps } from './IProps';
+import { IFormProps } from './IProps';
 
-export const SwitcherInput: React.FC<IProps> = ({ switcherInput }) => {
+export const SwitcherInput: React.FC<IFormProps> = ({ register, errors }) => {
   return (
-    <div className={switcherInput === '' ? 'validate' : 'no_validate'}>
+    <div className={errors.gender?.message ? 'no_validate' : 'validate'}>
       <label className="label__container">
         Gender:
         <label>
           Male:
-          <input type="radio" name="gander" value="Male" />
+          <input
+            {...register('gender', {
+              required: 'Select gender',
+            })}
+            type="radio"
+            value="Male"
+          />
         </label>
         <label>
           Female:
-          <input type="radio" name="gander" value="Female" />
+          <input
+            {...register('gender', {
+              required: 'Select gender',
+            })}
+            type="radio"
+            value="Female"
+          />
         </label>
-        {switcherInput && <span>{switcherInput}</span>}
+        {errors.gender?.message && <span>{errors.gender?.message}</span>}
       </label>
     </div>
   );

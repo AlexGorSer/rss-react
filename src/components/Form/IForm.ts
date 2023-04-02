@@ -1,9 +1,18 @@
 export interface IFormData {
   text: string;
   date: string;
-  country: string;
-  consent: boolean;
+  select: string;
   gender: string;
+  checkbox: boolean;
+  file: FileList;
+}
+
+export interface ISubmitData {
+  text: string;
+  date: string;
+  select: string;
+  gender: string;
+  checkbox: boolean;
   file: string;
 }
 

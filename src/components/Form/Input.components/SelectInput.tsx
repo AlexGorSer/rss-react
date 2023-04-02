@@ -1,14 +1,19 @@
 import React from 'react';
-import { IProps } from './IProps';
+import { validateSelect } from '../utility/input-valide';
+import { IFormProps } from './IProps';
 
-export const SelectInput: React.FC<IProps> = ({ selectInput }) => {
+export const SelectInput: React.FC<IFormProps> = ({ register, errors }) => {
   return (
     <label className="label__container">
       Select country:
       <select
+        {...register('select', {
+          required: 'input select',
+          validate: validateSelect,
+        })}
         name="select"
         defaultValue={'select'}
-        className={selectInput === '' ? 'validate' : 'no_validate'}
+        className={errors.select?.message ? 'no_validate' : 'validate'}
       >
         <option defaultChecked value="select">
           Select your country
@@ -20,7 +25,7 @@ export const SelectInput: React.FC<IProps> = ({ selectInput }) => {
         <option value="Ukraine">Ukraine</option>
         <option value="Kazakhstan">Kazakhstan</option>
       </select>
-      {selectInput && <span>{selectInput}</span>}
+      {errors.select?.message && <span>{errors.select?.message}</span>}
     </label>
   );
 };

@@ -4,7 +4,7 @@ import './App.scss';
 import { PageNotFound } from './components/404/PageNotFound';
 import { MainLayout } from './components/layout/MainLayout';
 import { Main } from './components/Main/Main';
-import Form from './components/Form/Form';
+import { Form } from './components/Form/Form';
 
 export const App: React.FC = () => {
   return (
