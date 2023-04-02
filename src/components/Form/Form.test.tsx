@@ -8,7 +8,6 @@ describe('Form', () => {
   it('Form is render', () => {
     render(<Form />);
 
-    screen.debug();
     expect(screen.getByText(/Submit/i)).toBeInTheDocument();
   });
 });
