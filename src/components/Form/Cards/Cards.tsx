@@ -1,20 +1,16 @@
 import React from 'react';
-import { IFormData } from '../IForm';
+import { ISubmitData } from '../IForm';
 
-class Cards extends React.Component<IFormData> {
-  render() {
-    return (
-      <div className="card__container">
-        <div className="card__text-container">
-          <img src={this.props.file} alt="" className="card__img" />
-          <p>Name: {this.props.text}</p>
-          <p>Gender {this.props.gender}</p>
-          <p>Country: {this.props.country}</p>
-          <p>Date: {this.props.date}</p>
-        </div>
+export const Cards: React.FC<ISubmitData> = ({ file, text, gender, select, date }) => {
+  return (
+    <div className="card__container">
+      <div className="card__text-container">
+        <img src={file} alt="" className="card__img" />
+        <p>Name: {text}</p>
+        <p>Gender {gender}</p>
+        <p>Country: {select}</p>
+        <p>Date: {date}</p>
       </div>
-    );
-  }
-}
-
-export default Cards;
+    </div>
+  );
+};

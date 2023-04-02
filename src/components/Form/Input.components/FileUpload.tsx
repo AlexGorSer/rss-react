@@ -1,21 +1,22 @@
 import React from 'react';
-import { IProps } from './IProps';
+import { validateFile } from '../utility/input-valide';
+import { IFormProps } from './IProps';
 
-class FileUpload extends React.Component<IProps> {
-  render(): React.ReactNode {
-    return (
-      <label className="label__container">
-        Upload file
-        <input
-          type="file"
-          name="file"
-          accept="image/png, image/jpeg"
-          className={this.props.fileUpload === '' ? 'validate' : 'no_validate'}
-        />
-        {this.props.fileUpload && <span>{this.props.fileUpload}</span>}
-      </label>
-    );
-  }
-}
-
-export default FileUpload;
+export const FileUpload: React.FC<IFormProps> = ({ register, errors }) => {
+  return (
+    <label className="label__container">
+      Upload file
+      <input
+        {...register('file', {
+          required: 'Select file',
+          validate: validateFile,
+        })}
+        type="file"
+        name="file"
+        accept="image/png, image/jpeg"
+        className={errors.file?.message ? 'no_validate' : 'validate'}
+      />
+      {errors.file?.message && <span>{errors.file?.message}</span>}
+    </label>
+  );
+};

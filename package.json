@@ -10,13 +10,14 @@
     "lint": "eslint src",
     "prettier": "npx prettier  src/**/*.{ts,tsx} --write",
     "lint:fix": "eslint src --fix",
-    "test": "vitest",
+    "test": "vitest --coverage",
     "coverage": "vitest run --coverage",
     "prepare": "husky install"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-router-dom": "^6.8.2",
     "vite-plugin-eslint": "^1.8.1"
   },

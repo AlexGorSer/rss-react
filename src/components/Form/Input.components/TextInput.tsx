@@ -1,22 +1,23 @@
 import React from 'react';
-import { IProps } from './IProps';
+import { validateName } from '../utility/input-valide';
+import { IFormProps } from './IProps';
 
-class TextInput extends React.Component<IProps> {
-  render(): React.ReactNode {
-    return (
-      <div className="text__container">
-        <label className="label__container">
-          Input your name:
-          <input
-            type="text"
-            name="text"
-            className={this.props.textInputMessage == '' ? 'validate' : 'no_validate'}
-          />
-          {this.props.textInputMessage && <span>{this.props.textInputMessage}</span>}
-        </label>
-      </div>
-    );
-  }
-}
-
-export default TextInput;
+export const TextInput: React.FC<IFormProps> = ({ register, errors }) => {
+  return (
+    <div className="text__container">
+      <label className="label__container">
+        Input your name:
+        <input
+          {...register('text', {
+            required: 'input name',
+            validate: validateName,
+          })}
+          type="text"
+          name="text"
+          className={errors.text?.message ? 'no_validate' : 'validate'}
+        />
+        {errors.text && <span>{errors.text.message}</span>}
+      </label>
+    </div>
+  );
+};

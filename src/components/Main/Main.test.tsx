@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import Main from './Main';
+import { Main } from './Main';
 
 describe('Main', () => {
   it('Main is render', () => {

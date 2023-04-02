@@ -1,22 +1,23 @@
 import React from 'react';
-import { IProps } from './IProps';
+import { validateDate } from '../utility/input-valide';
+import { IFormProps } from './IProps';
 
-class DateInput extends React.Component<IProps> {
-  render(): React.ReactNode {
-    return (
-      <div>
-        <label className="label__container">
-          Date:
-          <input
-            type="date"
-            name="date"
-            className={this.props.dateInput === '' ? 'validate' : 'no_validate'}
-          />
-          {this.props.dateInput && <span>{this.props.dateInput}</span>}
-        </label>
-      </div>
-    );
-  }
-}
-
-export default DateInput;
+export const DateInput: React.FC<IFormProps> = ({ register, errors }) => {
+  return (
+    <div>
+      <label className="label__container">
+        Date:
+        <input
+          {...register('date', {
+            required: 'input date',
+            validate: validateDate,
+          })}
+          type="date"
+          name="date"
+          className={errors.date?.message ? 'no_validate' : 'validate'}
+        />
+        {errors.date && <span>{errors.date.message}</span>}
+      </label>
+    </div>
+  );
+};

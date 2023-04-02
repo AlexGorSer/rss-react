@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it } from 'vitest';
-import ProductsCards from './ProductsCards';
+import { ProductsCards } from './ProductsCards';
 import { products } from '../../../data/products';
 
 describe('PageNotFound', () => {
