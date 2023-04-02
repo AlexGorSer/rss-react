@@ -7,10 +7,10 @@ import img from '../../../assets/github.svg';
 const testData = {
   text: 'Alice',
   gender: 'Female',
-  country: 'Russian',
+  select: 'Russian',
   date: '10.10.1010',
   file: `${img}`,
-  consent: true,
+  checkbox: true,
 };
 
 describe('Cards', () => {
