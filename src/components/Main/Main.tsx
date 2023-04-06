@@ -1,25 +1,36 @@
-import { products } from '../../data/products';
 import React, { useEffect, useRef, useState } from 'react';
 import { ProductsCards } from './ProductsCards/ProductsCards';
 import './Main.scss';
+import { IApi } from './IMain';
+import { getData } from '../../components/API/Api';
 
 export const Main: React.FC = () => {
   const [searchInput, setSearchInput] = useState(localStorage.getItem('input_text') || '');
-
+  const [inputArr, setInputArr] = useState<IApi[]>([]);
   const searchInputRef = useRef<string>();
 
   useEffect(() => {
     searchInputRef.current = searchInput;
   }, [searchInput]);
 
+  const searchData = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await getData(setInputArr, searchInputRef);
+  };
+
   useEffect(() => {
+    getData(setInputArr, searchInputRef);
     return () => localStorage.setItem('input_text', searchInputRef.current || '');
   }, []);
+  const findCard = (index: number) => {
+    const arr = inputArr.filter((data) => data.id === index);
+    console.log(...arr);
+  };
 
   return (
     <main className="container main__container">
       <div className="input__container">
-        <form>
+        <form onSubmit={(e) => searchData(e)}>
           <input
             className="input__search"
             id="input"
@@ -29,12 +40,16 @@ export const Main: React.FC = () => {
             onChange={(e) => setSearchInput(e.target.value)}
           />
         </form>
-        <h3>Count: {products.length}</h3>
+        {inputArr.length ? <h3>Count: {inputArr.length}</h3> : <h3>Not found</h3>}
       </div>
       <div className="cards__container">
-        {products.map((element) => (
-          <ProductsCards key={element.id} {...element} />
-        ))}
+        {inputArr.length ? (
+          inputArr.map((element) => (
+            <ProductsCards key={element.id} {...element} findCard={findCard} />
+          ))
+        ) : (
+          <h1>Loading...</h1>
+        )}
       </div>
     </main>
   );
