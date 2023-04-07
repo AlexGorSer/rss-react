@@ -1,3 +1,5 @@
+import { SetStateAction } from 'react';
+
 export interface IProducts {
   [key: string]: string | number | string[];
   id: number;
@@ -29,6 +31,7 @@ type TOrigin = {
 };
 
 export interface IApi {
+  setModal(a: SetStateAction<IApi[]>): void;
   findCard(a: number): void;
   id: number;
   name: string;
