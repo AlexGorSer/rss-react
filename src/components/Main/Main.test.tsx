@@ -19,6 +19,9 @@ const testAPI = {
 const server = setupServer(
   rest.get('https://rickandmortyapi.com/api/character/', async (_, res, ctx) => {
     return res(ctx.json(testAPI));
+  }),
+  rest.get('https://rickandmortyapi.com/api/character/361', async (_, res, ctx) => {
+    return res(ctx.json(testData[0]));
   })
 );
 
@@ -53,5 +56,13 @@ describe('Main', () => {
     fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: '' } });
     fireEvent.submit(screen.getByPlaceholderText('Search'));
     expect(await screen.findByText('Toxic Rick')).toBeInTheDocument();
+  });
+
+  it('Modal test render', async () => {
+    render(<Main />);
+    expect(await screen.findByText('Toxic Rick')).toBeInTheDocument();
+
+    fireEvent.click(screen.getByText('Toxic Rick'));
+    expect(await screen.findByText('Gender: Male')).toBeInTheDocument();
   });
 });
