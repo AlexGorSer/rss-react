@@ -1,9 +1,9 @@
 import React from 'react';
-import { IApi } from '../IMain';
+import { IModal } from '../IMain';
 import './Modal.scss';
 import SVG from '../../../assets/close.svg';
 
-export const ModalCard: React.FC<IApi> = ({
+export const ModalCard: React.FC<IModal> = ({
   name,
   image,
   setModal,

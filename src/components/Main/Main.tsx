@@ -25,9 +25,9 @@ export const Main: React.FC = () => {
     return () => localStorage.setItem('input_text', searchInputRef.current || '');
   }, []);
 
-  const findCard = async (index: number) => {
+  const findCard = (index: number) => {
     const arr = inputArr.filter((data) => data.id === index);
-    await getData(setModal, arr[0].id);
+    getData(setModal, arr[0].id);
   };
 
   return (

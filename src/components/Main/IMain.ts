@@ -31,8 +31,6 @@ type TOrigin = {
 };
 
 export interface IApi {
-  setModal(a: SetStateAction<IApi[]>): void;
-  findCard(a: number): void;
   id: number;
   name: string;
   status: string;
@@ -45,4 +43,11 @@ export interface IApi {
   episode: string[];
   url: string;
   created: string;
+}
+
+export interface IModal extends IApi {
+  setModal(a: SetStateAction<IApi[]>): void;
+}
+export interface IProductsCards extends IApi {
+  findCard(a: number): void;
 }

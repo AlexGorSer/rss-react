@@ -1,8 +1,8 @@
 import React from 'react';
-import { IApi } from '../IMain';
+import { IProductsCards } from '../IMain';
 import './ProductsCards.scss';
 
-export const ProductsCards: React.FC<IApi> = ({
+export const ProductsCards: React.FC<IProductsCards> = ({
   name,
   image,
   species,
