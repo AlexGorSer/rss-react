@@ -5,6 +5,8 @@ import { Main } from './Main';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
 import { testData } from './ProductsCards/ProductsCards.test';
+import { Provider } from 'react-redux';
+import { store } from '../../store/store';
 
 const testAPI = {
   info: {
@@ -31,23 +33,35 @@ afterAll(() => server.close());
 
 describe('Main', () => {
   it('Main is render', () => {
-    render(<Main />);
+    render(
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    );
 
     expect(screen.getAllByRole('heading')).toBeTruthy();
     expect(screen.getByText(/Not found/i)).toBeInTheDocument();
   });
 
   it('input is render', () => {
-    render(<Main />);
+    render(
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    );
     expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
     fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: 'test' } });
     expect(screen.getByPlaceholderText('Search')).toHaveValue('test');
   });
 
   it('Api test render', async () => {
-    render(<Main />);
-    expect(await screen.findByText('Toxic Rick')).toBeInTheDocument();
+    render(
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    );
 
+    expect(await screen.findByText('Toxic Rick')).toBeInTheDocument();
     fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: 'test' } });
     fireEvent.submit(screen.getByPlaceholderText('Search'));
 
@@ -59,7 +73,11 @@ describe('Main', () => {
   });
 
   it('Modal test render', async () => {
-    render(<Main />);
+    render(
+      <Provider store={store}>
+        <Main />
+      </Provider>
+    );
     expect(await screen.findByText('Toxic Rick')).toBeInTheDocument();
 
     fireEvent.click(screen.getByText('Toxic Rick'));

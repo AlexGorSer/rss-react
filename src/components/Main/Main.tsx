@@ -1,38 +1,42 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { ProductsCards } from './ProductsCards/ProductsCards';
 import './Main.scss';
-import { IApi } from './IMain';
-import { getData } from '../../components/API/Api';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from 'store/store';
+import { inputSearch, setModal } from '../../store/slice/Main.slice';
+import { useLazyGetCardsByNameQuery } from '../../store/service/DataService';
 import { ModalCard } from './Modal/ModalCard';
 
 export const Main: React.FC = () => {
-  const [searchInput, setSearchInput] = useState(localStorage.getItem('input_text') || '');
-  const [inputArr, setInputArr] = useState<IApi[]>([]);
-  const [modal, setModal] = useState<IApi[]>([]);
+  const { search, modal } = useSelector((state: RootState) => state.main);
+  const [bySubmit, { data, isLoading }] = useLazyGetCardsByNameQuery();
+  const dispatch = useDispatch();
+
   const searchInputRef = useRef<string>();
 
   useEffect(() => {
-    searchInputRef.current = searchInput;
-  }, [searchInput]);
+    searchInputRef.current = search;
+  }, [search]);
 
   const searchData = async (e: React.FormEvent) => {
     e.preventDefault();
-    await getData(setInputArr, searchInputRef.current!);
+    await bySubmit(search);
   };
 
   useEffect(() => {
-    getData(setInputArr, searchInputRef.current!);
-    return () => localStorage.setItem('input_text', searchInputRef.current || '');
-  }, []);
+    bySubmit(searchInputRef.current!);
+  }, [bySubmit]);
 
-  const findCard = (index: number) => {
-    const arr = inputArr.filter((data) => data.id === index);
-    getData(setModal, arr[0].id);
+  const findCard = async (index: number) => {
+    const arr = data?.results.filter((data) => data.id === index);
+    if (arr) {
+      dispatch(setModal(arr[0]));
+    }
   };
 
   return (
     <main className="container main__container">
-      {modal.length ? <ModalCard {...modal[0]} setModal={setModal} /> : ''}
+      {modal.length ? <ModalCard {...modal[0]} /> : ''}
       <div className="input__container">
         <form onSubmit={(e) => searchData(e)}>
           <input
@@ -40,19 +44,19 @@ export const Main: React.FC = () => {
             id="input"
             type="text"
             placeholder="Search"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
+            value={search}
+            onChange={(e) => dispatch(inputSearch(e.target.value))}
           />
         </form>
-        {inputArr.length ? <h3>Count: {inputArr.length}</h3> : <h3>Not found</h3>}
+        {isLoading ? <h3>Not found</h3> : <h3>Count: {data?.results.length}</h3>}
       </div>
       <div className="cards__container">
-        {inputArr.length ? (
-          inputArr.map((element) => (
+        {isLoading ? (
+          <h1>Loading...</h1>
+        ) : (
+          data?.results.map((element) => (
             <ProductsCards key={element.id} {...element} findCard={findCard} />
           ))
-        ) : (
-          <h1>Loading...</h1>
         )}
       </div>
     </main>
