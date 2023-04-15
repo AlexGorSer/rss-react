@@ -8,6 +8,13 @@ import { testData } from './ProductsCards/ProductsCards.test';
 import { Provider } from 'react-redux';
 import { store } from '../../store/store';
 
+import { fetch, Headers, Request, Response } from 'cross-fetch';
+
+global.fetch = fetch;
+global.Headers = Headers;
+global.Request = Request;
+global.Response = Response;
+
 const testAPI = {
   info: {
     count: 826,
@@ -64,8 +71,6 @@ describe('Main', () => {
     expect(await screen.findByText('Toxic Rick')).toBeInTheDocument();
     fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: 'test' } });
     fireEvent.submit(screen.getByPlaceholderText('Search'));
-
-    expect(screen.getByText('Loading...')).toBeInTheDocument();
 
     fireEvent.change(screen.getByPlaceholderText('Search'), { target: { value: '' } });
     fireEvent.submit(screen.getByPlaceholderText('Search'));

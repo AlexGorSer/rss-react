@@ -32,3 +32,7 @@ export interface IInfo {
   };
   results: IApi[];
 }
+
+export interface IProductsCards extends IApi {
+  findCard(a: number): void;
+}

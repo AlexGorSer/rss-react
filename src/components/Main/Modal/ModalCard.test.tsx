@@ -13,7 +13,6 @@ describe('ModalCard', () => {
         <ModalCard {...testData[0]} />
       </Provider>
     );
-    screen.debug();
 
     expect(screen.getByText(`${testData[0].name}`)).toBeInTheDocument();
     expect(screen.getByText(`Status: ${testData[0].status}`)).toBeInTheDocument();
