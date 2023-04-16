@@ -1,0 +1,22 @@
+.active {
+  color: wheat;
+}
+.no_active {
+  color: white;
+  text-decoration: none;
+}
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 26px;
+  margin: 0px 0px 10px 0px;
+  background-color: black;
+  color: white;
+  padding: 20px;
+}
+
+.header_nav {
+  display: flex;
+  gap: 20px;
+}
