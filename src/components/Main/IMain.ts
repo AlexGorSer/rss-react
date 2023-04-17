@@ -1,25 +1,3 @@
-import { SetStateAction } from 'react';
-
-export interface IProducts {
-  [key: string]: string | number | string[];
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
-export interface IState {
-  arrCard?: IProducts[];
-  input?: string | null;
-  filterArray?: IProducts[];
-}
-
 type TLocation = {
   name: string;
   url: string;
@@ -45,9 +23,16 @@ export interface IApi {
   created: string;
 }
 
-export interface IModal extends IApi {
-  setModal(a: SetStateAction<IApi[]>): void;
+export interface IInfo {
+  info: {
+    count: number;
+    pages: number;
+    next: string;
+    prev: null;
+  };
+  results: IApi[];
 }
+
 export interface IProductsCards extends IApi {
   findCard(a: number): void;
 }

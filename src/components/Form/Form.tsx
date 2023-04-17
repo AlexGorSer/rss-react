@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { CheckboxInput } from './Input.components/CheckboxInput';
 import { DateInput } from './Input.components/DataInput';
 import { FileUpload } from './Input.components/FileUpload';
@@ -9,9 +9,13 @@ import './Form.scss';
 import { Cards } from './Cards/Cards';
 import { IFormData, ISubmitData } from './IForm';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from 'store/store';
+import { addFormData } from '../../store/slice/Form.slice';
 
 export const Form: React.FC = () => {
-  const [cardArray, changeCardArray] = useState<ISubmitData[]>([]);
+  const dataForm = useSelector((state: RootState) => state.form.userPost);
+  const dispatch = useDispatch();
 
   const {
     register,
@@ -33,7 +37,7 @@ export const Form: React.FC = () => {
       file: image,
     };
 
-    changeCardArray([...cardArray, newCard]);
+    dispatch(addFormData(newCard));
     reset();
   };
 
@@ -52,7 +56,7 @@ export const Form: React.FC = () => {
         {isSubmitSuccessful && <h1>Card is created!</h1>}
       </div>
       <div className="form-cards__container">
-        {cardArray.length > 0 && cardArray.map((elem, index) => <Cards key={index} {...elem} />)}
+        {dataForm.length > 0 && dataForm.map((elem, index) => <Cards key={index} {...elem} />)}
       </div>
     </section>
   );

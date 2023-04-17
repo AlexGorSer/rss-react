@@ -1,23 +1,25 @@
 import React from 'react';
-import { IModal } from '../IMain';
+import { IApi } from '../IMain';
 import './Modal.scss';
 import SVG from '../../../assets/close.svg';
+import { useDispatch } from 'react-redux';
+import { emptyModal } from '../../../store/slice/Main.slice';
 
-export const ModalCard: React.FC<IModal> = ({
+export const ModalCard: React.FC<IApi> = ({
   name,
   image,
-  setModal,
   gender,
   status,
   location,
   origin,
   species,
 }) => {
+  const dispatch = useDispatch();
   return (
-    <div className="modal__container" onClick={() => setModal([])}>
+    <div className="modal__container" onClick={() => dispatch(emptyModal())}>
       <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal__close">
-          <img src={SVG} alt="" className="sgv__modal" onClick={() => setModal([])} />
+          <img src={SVG} alt="" className="sgv__modal" onClick={() => dispatch(emptyModal())} />
         </div>
         <h1>{name}</h1>
         <img src={image} alt={name} />
