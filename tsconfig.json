@@ -13,7 +13,13 @@
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": "./src",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "useDefineForClassFields": true,
+    "allowJs": false,
+    "isolatedModules": true,
+    "noEmit": true
   },
-  "include": ["./src/**/*", "styled.d.ts"]
+  "ts-node": { "esm": true, "transpileOnly": true },
+  "include": ["./src/**/*", "styled.d.ts"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

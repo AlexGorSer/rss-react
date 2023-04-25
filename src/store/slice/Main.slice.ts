@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IApi } from 'components/Main/IMain';
+import { IApi } from '../../components/Main/IMain';
 
 interface InitialState {
   search: string;

@@ -9,7 +9,7 @@ import { configDefaults, defineConfig } from 'vitest/config';
 // https://vitejs.dev/config/
 export default defineConfig({
   base: './',
-  plugins: [react(), eslint()],
+  plugins: [react({ fastRefresh: false }), eslint()],
   test: {
     globals: true,
     environment: 'jsdom',
@@ -25,6 +25,6 @@ export default defineConfig({
     },
   },
   server: {
-    open: true,
+    host: 'localhost',
   },
 });

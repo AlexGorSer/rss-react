@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { ISubmitData } from 'components/Form/IForm';
+import { ISubmitData } from '../../components/Form/IForm';
 
 interface InitialState {
   userPost: ISubmitData[];
