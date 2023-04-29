@@ -21,5 +21,6 @@
   },
   "ts-node": { "esm": true, "transpileOnly": true },
   "include": ["./src/**/*", "styled.d.ts"],
+  "exclude": ["./cypress.config.ts", "node_modules", "cypress", "**/*.cy.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
