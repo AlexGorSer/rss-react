@@ -1,14 +1,11 @@
 import express from 'express';
 
-// Constants
 const isProduction = process.env.NODE_ENV === 'production';
 const port = process.env.PORT || 5173;
 const base = process.env.BASE || '/';
 
-// Create http server
 const app = express();
 
-// Add Vite or respective production middlewares
 let vite;
 if (!isProduction) {
   const { createServer } = await import('vite');
@@ -24,7 +21,6 @@ if (!isProduction) {
   app.use(base, sirv('./dist/client', { extensions: [] }));
 }
 
-// Serve HTML
 app.use('*', async (req, res) => {
   try {
     const url = req.originalUrl;
@@ -36,7 +32,6 @@ app.use('*', async (req, res) => {
     }
 
     const rendered = await render(url, {
-      // bootstrapScripts: ['/src/entry-client.tsx'],
       onShellReady() {
         res.setHeader('content-type', 'text/html');
         rendered.html.pipe(res);
@@ -49,7 +44,6 @@ app.use('*', async (req, res) => {
   }
 });
 
-// Start http server
 app.listen(port, () => {
   console.log(`Server started at http://localhost:${port}`);
 });
