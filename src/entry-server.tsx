@@ -1,13 +1,13 @@
 import { App } from './App';
 import React from 'react';
 import './index.scss';
-import { renderToPipeableStream } from 'react-dom/server';
+import { renderToPipeableStream, RenderToPipeableStreamOptions } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { Html } from './Html';
 
-export function render(url: string, opts) {
+export function render(url: string, opts: RenderToPipeableStreamOptions | undefined) {
   const html = renderToPipeableStream(
     <Html>
       <Provider store={store}>
