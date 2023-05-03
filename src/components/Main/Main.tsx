@@ -2,14 +2,14 @@ import React, { useEffect, useRef } from 'react';
 import { ProductsCards } from './ProductsCards/ProductsCards';
 import './Main.scss';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from 'store/store';
+import { RootState } from '../../store/store';
 import { inputSearch, setModal } from '../../store/slice/Main.slice';
 import { useLazyGetCardsByNameQuery } from '../../store/service/DataService';
 import { ModalCard } from './Modal/ModalCard';
 
 export const Main: React.FC = () => {
   const { search, modal } = useSelector((state: RootState) => state.main);
-  const [bySubmit, { data, isLoading }] = useLazyGetCardsByNameQuery();
+  const [bySubmit, { data, isLoading, error }] = useLazyGetCardsByNameQuery();
   const dispatch = useDispatch();
 
   const searchInputRef = useRef<string>();
@@ -48,11 +48,19 @@ export const Main: React.FC = () => {
             onChange={(e) => dispatch(inputSearch(e.target.value))}
           />
         </form>
-        {isLoading ? <h3>Not found</h3> : <h3>Count: {data?.results.length}</h3>}
+        {isLoading ? (
+          <h3>Not found</h3>
+        ) : error ? (
+          <h3>Count: 0</h3>
+        ) : (
+          <h3>Count: {data?.results.length}</h3>
+        )}
       </div>
       <div className="cards__container">
         {isLoading ? (
           <h1>Loading...</h1>
+        ) : error ? (
+          <h1>Not Found</h1>
         ) : (
           data?.results.map((element) => (
             <ProductsCards key={element.id} {...element} findCard={findCard} />

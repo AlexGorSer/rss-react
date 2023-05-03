@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { IInfo } from 'components/Main/IMain';
+import { IInfo } from '../../components/Main/IMain';
 
 export const dataAPI = createApi({
   reducerPath: 'RickAndMorty',
